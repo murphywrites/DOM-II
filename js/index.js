@@ -1,21 +1,21 @@
 // Your code goes here
-// // 
-// 1. []# add images for mouseover: fun in the sun, mountain excursion, island getaway
-// 2. []# scroll and fun bus moves down the page
-// 3. []# select and display text in nav
-// 4. []# double click to change to dark mode to tropical mode
-// 5. []# esc makes fun bus full-size and plays tropical song
-// 6. []#resize displays “transform your travel experience"
-// 7. []#load display new features list in modal window
-// 8. []#click anywhere to get out of modal window
-// 9. []#drag/drop travel moodboard
-// 10. []#volumedown message displays
+
+// // prevent default to keep nav-links from refreshing page
+const navLinks = document.querySelector('a'); 
+navLinks.addEventListener('click', (e) => {
+    e.preventDefault();
+})
 
 
-// 
+// dbl click on bus image to reset the filter
+busImg = document.querySelector('img')
+busImg.addEventListener('dblclick', (e) =>{
+    busImg.style.filter = 'hue-rotate(-45deg)';
+    e.stopPropagation() //event propagation control so that dbl clicking on image doesn't invoke "dark mode
+}, {capture: true})
+
 
 // 10. scroll to change filter on main bus image
-busImg = document.querySelector('img')
 window.addEventListener('scroll', (e) => {
     busImg.style.filter = 'hue-rotate(45deg)';
 })
@@ -26,7 +26,7 @@ window.addEventListener('load', (e) => {
     const normalMsg = featureMsg.innerHTML;
     const popUp = document.querySelector('.modal')
     featureMsg.innerHTML = 
-    "Feature List <br> 1. this <br> 2. that <br> (click anywhere to get to the site)"
+    "Feature List <br> 1. Mouseover/Mouseleave feature images <br> 2. Move bus emoji to different links on 'focus', return to previous state on 'blur' <br> 3. double click to change to dark mode <br> 4. Hit the Esc key to switch to 'Island Mode 😎' <br> 5. Scroll down to change the filter on the Bus Image (double click it to change it back) <br> <br> (Now, click anywhere to get to the site!)"
     popUp.classList.remove('off')
     
     // 8. click to get out of Feature List
@@ -86,7 +86,6 @@ document.addEventListener('dblclick', (e) => {
 // 3+4 Move bus emoji to different links on 'focus', return to previous state on 'blur'
 
 const funBus = "🚌"
-
 const links = document.querySelectorAll("a");
 
 Array.from(links).forEach((item) => {
